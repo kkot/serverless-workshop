@@ -342,6 +342,7 @@ Resources:
               "Next": "Link Client to Image"
             },
 
+
             "Link Client to Image": {
               "Type": "Task",
               "Resource": "arn:aws:states:::dynamodb:putItem",
