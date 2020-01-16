@@ -27,6 +27,13 @@ Resources:
       OpenApiVersion: '3.0.2'
       EndpointConfiguration: REGIONAL
 
+  WorkshopApi2:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      OpenApiVersion: '3.0.2'
+      EndpointConfiguration: REGIONAL
+
   Upload:
     Type: AWS::Serverless::Function
     Properties:
@@ -40,6 +47,20 @@ Resources:
             Path: /api/images
             Method: post
             RestApiId: !Ref WorkshopApi
+
+  Upload2:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/get_images
+      Runtime: python3.8
+      Handler: index.lambda_handler
+      Events:
+        PostImage:
+          Type: Api
+          Properties:
+            Path: /api/get_images
+            Method: post
+            RestApiId: !Ref WorkshopApi2
 
 # Route 53 Domain Resources
 
